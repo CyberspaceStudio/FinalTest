@@ -56,61 +56,66 @@ public class JdbcUtils {
             conn = null;
         }
     }
+    public static void release( Statement stmt, Connection conn) throws SQLException{
+        if (stmt != null) {
+            stmt.close();
+            stmt = null;
+        }
+        if (conn != null) {
+            conn.close();
+            conn = null;
+        }
+    }
 
     //通用的增删改方法
     public static boolean update(String sql, Object[] params) throws SQLException {
-
-
         Connection conn = getConnection();
         PreparedStatement pstmt = null;
-        ResultSet rs = null;
-
-        //预编译sql
+        boolean r = false;
 
         pstmt = conn.prepareStatement(sql);
         //for(Object param : params)   这样写是有错误的，会有空指针异常，要写成如下的方法：
         for (int i = 0; params != null && i < params.length; i++)
-            pstmt.setObject(i + 1, params[1]);//由于不知道是什么类型的，故可以用Object
+            pstmt.setObject(i + 1, params[i]);
 
         //返回结果
         int row = pstmt.executeUpdate();
         if (row > 0)
-            return true;
+            r =  true;
         else {
-            release(rs, pstmt, conn);
-            return false;
+            release(pstmt, conn);
         }
+        return r;
     }
 
-    //实现一个通用的查询方法
-
-    public static ResultSet query(String sql, Object[] params) throws SQLException {
-        Connection conn = null;
+    public static boolean update(String sql) throws SQLException {
+        Connection conn = getConnection();
         PreparedStatement pstmt = null;
-        ResultSet rs = null;
-        conn = getConnection();
-
-            //写sql
-
-            //预编译sql
+        boolean r = false;
 
         pstmt = conn.prepareStatement(sql);
 
-            //替换参数
-
-        for (int i = 0; params != null && i < params.length; i++) {
-            pstmt.setObject(i + 1, params[1]);//由于不知道是什么类型的，故可以用Object
+        int row = pstmt.executeUpdate();
+        if (row > 0)
+            r =  true;
+        else {
+            release(pstmt, conn);
         }
-            //发送sql
-        rs = pstmt.executeQuery();
+        return r;
+    }
 
+    //实现一个通用的查询方法
+    public static ResultSet query(String sql) throws SQLException {
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+        conn = getConnection();
+        pstmt = conn.prepareStatement(sql);
+        ResultSet rs = pstmt.executeQuery();
         if (rs!=null) {
             return rs;
         }else{
             release(rs, pstmt, conn);
             return null;
         }
-
     }
-
 }

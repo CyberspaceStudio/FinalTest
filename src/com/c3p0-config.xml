@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!--数据库配置记得更改-->
 <c3p0-config>
     <!-- This is default config! -->
     <default-config>

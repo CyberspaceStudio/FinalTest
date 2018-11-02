@@ -1,6 +1,6 @@
 package com.entity;
 
-public class Massage {
+public class Message {
     private int id;
 
     private String content;
