@@ -3,12 +3,33 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
          version="4.0">
+    <!--XML elements in this file are read in order from top to bottom of the XML document-->
+
+    <!--Set filters to cross-domain and set char to utf-8-->
     <filter>
         <filter-name>CharsetFilter</filter-name>
         <filter-class>com.filter.CharsetFilter</filter-class>
     </filter>
+    <filter-mapping>
+        <filter-name>CharsetFilter</filter-name>
+        <servlet-name>*</servlet-name>
+    </filter-mapping>
+    <filter>
+        <filter-name>CrossFilter</filter-name>
+        <filter-class>com.filter.CrossFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>CrossFilter</filter-name>
+        <servlet-name>*</servlet-name>
+    </filter-mapping>
+
+    <!--Set servlets' mapping-->
     <servlet>
         <servlet-name>Judge</servlet-name>
         <servlet-class>com.servlet.Judge</servlet-class>
     </servlet>
+    <servlet-mapping>
+        <servlet-name>Judge</servlet-name>
+        <url-pattern>judge</url-pattern>
+    </servlet-mapping>
 </web-app>
