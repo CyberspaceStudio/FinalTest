@@ -30,6 +30,6 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>Judge</servlet-name>
-        <url-pattern>judge</url-pattern>
+        <url-pattern>/judge</url-pattern>
     </servlet-mapping>
 </web-app>
