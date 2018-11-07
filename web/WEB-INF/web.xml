@@ -25,11 +25,19 @@
 
     <!--Set servlets' mapping-->
     <servlet>
-        <servlet-name>Judge</servlet-name>
-        <servlet-class>com.servlet.Judge</servlet-class>
+        <servlet-name>Controller</servlet-name>
+        <servlet-class>com.servlet.Controller</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>Judge</servlet-name>
-        <url-pattern>/judge</url-pattern>
+        <servlet-name>Controller</servlet-name>
+        <url-pattern>/controller</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>Video</servlet-name>
+        <servlet-class>com.servlet.Video</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Video</servlet-name>
+        <url-pattern>/video</url-pattern>
     </servlet-mapping>
 </web-app>

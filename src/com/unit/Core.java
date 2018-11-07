@@ -39,9 +39,31 @@ public class Core extends Thread{
         }
     }
 
+    private static String weatherJudge(User user){
+        String temp = "";
+        if(user.getWeather().contains("晴")){
+            temp = "happy";
+        }else if(user.getWeather().contains("雪")){
+            temp = "code";
+        }else if(user.getWeather().contains("雨")){
+            temp = "rain";
+        }else if(user.getWeather().contains("云")){
+            temp = "sadness";
+        }else {
+            temp = "special";
+        }
+        return temp;
+    }
+
+
+    /**
+     * @param user 使用一个Java User对象
+     * @return 返回一个感情字符串
+     */
     public static String judge(User user){
         String emotionTime = timeJudge();
         String emotionPosition = positionJudge(user);
+        String emotionWeather = weatherJudge(user);
         String finalEmotion = "";
         //按照一种我也不知道什么鬼的规则来判断感情，代码可读性奇差无比，无法维护，强者麻烦重构一下
         if((emotionTime.equals("positive") || emotionTime.equals("working")) && emotionPosition.equals("working")){

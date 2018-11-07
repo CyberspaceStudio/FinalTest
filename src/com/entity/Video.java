@@ -9,7 +9,7 @@ public class Video extends File {
         return emotion;
     }
 
-    private void setEmotion(String emotion) {
+    public void setEmotion(String emotion) {
         this.emotion = emotion;
     }
 

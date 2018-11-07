@@ -8,6 +8,15 @@ public class User {
 
     private float positionY;
 
+    private String weather;
+
+    public String getWeather() {
+        return weather;
+    }
+
+    public void setWeather(String weather) {
+        this.weather = weather;
+    }
 
     public float getPositionX() {
         return positionX;
