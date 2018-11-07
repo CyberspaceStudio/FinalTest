@@ -40,4 +40,12 @@
         <servlet-name>Video</servlet-name>
         <url-pattern>/video</url-pattern>
     </servlet-mapping>
+    <servlet>
+        <servlet-name>Music</servlet-name>
+        <servlet-class>com.servlet.Music</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Music</servlet-name>
+        <url-pattern>/music</url-pattern>
+    </servlet-mapping>
 </web-app>

@@ -46,11 +46,10 @@ public class VideoImpl implements VideoDao{
         return JdbcUtils.update(sql, values);
     }
 
-
+    //求求你了用返回对象重构这些方法吧我求你了
     @Override
     public ResultSet query(String key, String keyword) throws SQLException{
         String sql = "SELECT FROM Video WHERE"+key+" ='"+keyword+"'";
         return JdbcUtils.query(sql);
-
     }
 }
