@@ -39,31 +39,26 @@ public class Core extends Thread{
         }
     }
 
-    public static JSONObject judge(User user){
+    public static String judge(User user){
         String emotionTime = timeJudge();
         String emotionPosition = positionJudge(user);
-        JSONObject temp = new JSONObject();
+        String finalEmotion = "";
         //按照一种我也不知道什么鬼的规则来判断感情，代码可读性奇差无比，无法维护，强者麻烦重构一下
         if((emotionTime.equals("positive") || emotionTime.equals("working")) && emotionPosition.equals("working")){
-            String finalEmotion = "positive";
-            temp.put("emotion",finalEmotion);
-            return temp;
+            finalEmotion = "positive";
+            return finalEmotion;
         }else if ((emotionTime.equals("positive") || emotionTime.equals("working")) && emotionPosition.equals("relax")){
-            String finalEmotion = "happy";
-            temp.put("emotion",finalEmotion);
-            return temp;
+            finalEmotion = "happy";
+            return finalEmotion;
         }else if(emotionTime.equals("sadness")){
-            String finalEmotion = "sadness";
-            temp.put("emotion",finalEmotion);
-            return temp;
+            finalEmotion = "sadness";
+            return finalEmotion;
         }else if(emotionTime.equals("night")){
-            String finalEmotion = "night";
-            temp.put("emotion",finalEmotion);
-            return temp;
+            finalEmotion = "night";
+            return finalEmotion;
         }else {
-            String finalEmotion = "easy";
-            temp.put("emotion",finalEmotion);
-            return temp;
+            finalEmotion = "easy";
+            return finalEmotion;
         }
     }
 }

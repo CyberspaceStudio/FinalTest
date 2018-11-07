@@ -19,8 +19,7 @@ public class Judge extends javax.servlet.http.HttpServlet {
         User user = new User();
         user.setPositionX(positionX);
         user.setPositionY(positionY);
-        JSONObject object = Core.judge(user);
-        String emotion = object.getString("emotion");
+        String emotion = Core.judge(user);
         response.getWriter().write(emotion);
     }
 
