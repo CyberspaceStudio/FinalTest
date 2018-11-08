@@ -1,12 +1,13 @@
 package com.dao;
 
+import com.entity.Chair;
 import com.entity.Photo;
 import com.util.JdbcUtils;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class PhotoImpl implements PhotoDao {
+public class PhotoImpl implements Dao<Photo> {
 
     @Override
     public boolean insert(Photo photo) throws SQLException {
@@ -48,8 +49,19 @@ public class PhotoImpl implements PhotoDao {
 
 
     @Override
-    public ResultSet query(String key, String keyword) throws SQLException{
-        String sql = "SELECT FROM Photo WHERE"+key+" ='"+keyword+"'";
+    public Photo query(String key, String keyword) throws SQLException{
+        String sql = "SELECT FROM Chair WHERE"+key+" ='"+keyword+"'";
+        ResultSet rs = null;
+        try {
+            rs = JdbcUtils.query(sql);
+        }catch (NullPointerException e){
+            e.printStackTrace();
+        }
+        Chair chair = new Chair();
+
+        chair.setId(Integer.parseInt(rs.getString("chairId")));
+        chair.setPosition_x(rs.getString("position_x"));
+        chair.setPosition_x(rs.getString("position_y"));
         return JdbcUtils.query(sql);
 
     }
