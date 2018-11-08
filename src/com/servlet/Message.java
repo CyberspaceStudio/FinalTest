@@ -20,12 +20,11 @@ import java.util.List;
 @WebServlet(name = "Message")
 public class Message extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        User user = DealRequest.dealIt(request);
         List<com.entity.Message> messages = null;
-        String finalEmotion = Core.judge(user);
+        String id = request.getParameter("id");
         MessageDao md = new MessageImpl();
         try {
-            messages = ((MessageImpl)md).query("emotion",finalEmotion);
+            messages = ((MessageImpl)md).query("id",id);
         } catch (SQLException e) {
             e.printStackTrace();
         }
