@@ -5,7 +5,7 @@ import com.util.JdbcUtils;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class MusicDaoImpl implements MusicDao {
+public class MusicDaoImpl implements Dao<Music> {
 
     @Override
     public boolean insert(Music music) throws SQLException {

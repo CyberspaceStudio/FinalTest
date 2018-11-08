@@ -5,7 +5,15 @@ public class Message {
 
     private String content;
 
-    private String fileType;
+    private String emotion;
+
+    public String getEmotion() {
+        return emotion;
+    }
+
+    public void setEmotion(String emotion) {
+        this.emotion = emotion;
+    }
 
     public int getId() {
         return id;
@@ -23,11 +31,5 @@ public class Message {
         this.content = content;
     }
 
-    public String getFileType() {
-        return fileType;
-    }
 
-    public void setFileType(String fileType) {
-        this.fileType = fileType;
-    }
 }

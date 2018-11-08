@@ -1,6 +1,6 @@
 package com.servlet;
 
-import com.dao.VideoDao;
+import com.dao.Dao;
 import com.dao.VideoImpl;
 import com.entity.User;
 import com.unit.Core;
@@ -33,11 +33,11 @@ public class Video extends HttpServlet {
         user.setWeather(weather);
         String finalEmtion = Core.judge(user);
         //实现方法接口
-        VideoDao videoDao = new VideoImpl();
+        Dao videoDao = new VideoImpl();
         ResultSet rs = null;
         JSONObject jsonObject = new JSONObject();
         try{
-            rs = videoDao.query("emotion",finalEmtion);
+            rs = Dao.query("emotion",finalEmtion);
             jsonObject.put("emotion",finalEmtion);
             jsonObject.put("url",rs.getString("url"));
             //多此一举的方法我快疯了

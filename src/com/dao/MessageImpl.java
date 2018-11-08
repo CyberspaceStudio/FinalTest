@@ -5,13 +5,15 @@ import com.util.JdbcUtils;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
-public class MessageImpl implements MessageDao {
+public class MessageImpl implements MessageDao<Message> {
 
     @Override
     public boolean insert(Message message) throws SQLException {
         String sql = "INSERT INTO Message(chairId,content,fileType) VALUES (?,?,?)";
-        Object[] params = new Object[]{message.getId(),message.getContent(),message.getFileType()};
+        Object[] params = new Object[]{message.getId(),message.getContent(),message.getEmotion()};
         return JdbcUtils.update(sql, params);
 
     }
@@ -48,9 +50,17 @@ public class MessageImpl implements MessageDao {
 
 
     @Override
-    public ResultSet query(String key, String keyword) throws SQLException{
+    public List<Message> query(String key, String keyword) throws SQLException{
+        List<Message> list = new ArrayList<Message>();
         String sql = "SELECT FROM Message WHERE"+key+" ='"+keyword+"'";
-        return JdbcUtils.query(sql);
-
+        ResultSet res= JdbcUtils.query(sql);
+        while(res.next()){
+            Message temp = new Message();
+            temp.setId(Integer.parseInt(res.getString("chairId")));
+            temp.setContent(res.getString("content"));
+            temp.setEmotion(res.getString("emotion"));
+            list.add(temp);
+        }
+        return list;
     }
 }

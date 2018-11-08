@@ -6,7 +6,7 @@ import com.util.JdbcUtils;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class VideoImpl implements VideoDao{
+public class VideoImpl implements Dao<Video>{
 
     @Override
     public boolean insert(Video video) throws SQLException {
@@ -48,7 +48,7 @@ public class VideoImpl implements VideoDao{
 
     //求求你了用返回对象重构这些方法吧我求你了
     @Override
-    public ResultSet query(String key, String keyword) throws SQLException{
+    public Video query(String key, String keyword) throws SQLException{
         String sql = "SELECT FROM Video WHERE"+key+" ='"+keyword+"'";
         return JdbcUtils.query(sql);
     }
