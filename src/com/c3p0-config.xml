@@ -13,10 +13,10 @@
     <!-- This is my config for mysql-->
     <named-config name="mysql">
         <property name="driverClass">com.mysql.cj.jdbc.Driver</property>
-        <property name="jdbcUrl">jdbc:mysql://localhost:3306/bigtest?serverTimezone=GMT</property>
+        <property name="jdbcUrl">jdbc:mysql://localhost:3306/find?serverTimezone=GMT</property>
         <!--MySQL账户密码-->
         <property name="user">root</property>
-        <property name="password">rootroot</property>
+        <property name="password">168168</property>
         <!-- 初始化连接池中的连接数，取值应在minPoolSize与maxPoolSize之间，默认为3-->
         <property name="initialPoolSize">10</property>
         <!--最大空闲时间，60秒内未使用则连接被丢弃。若为0则永不丢弃。默认值: 0 -->

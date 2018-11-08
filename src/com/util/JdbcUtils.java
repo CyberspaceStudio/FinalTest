@@ -106,10 +106,8 @@ public class JdbcUtils {
 
     //实现一个通用的查询方法
     public static ResultSet query(String sql) throws SQLException {
-        Connection conn = null;
-        PreparedStatement pstmt = null;
-        conn = getConnection();
-        pstmt = conn.prepareStatement(sql);
+        Connection conn = getConnection();
+        PreparedStatement pstmt = conn.prepareStatement(sql);
         ResultSet rs = pstmt.executeQuery();
         if (rs!=null) {
             return rs;
