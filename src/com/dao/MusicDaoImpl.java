@@ -47,10 +47,20 @@ public class MusicDaoImpl implements Dao<Music> {
 
 
     @Override
-    public ResultSet query(String key,String keyword) throws SQLException{
-        String sql = "SELECT FROM Music WHERE"+key+" ='"+keyword+"'";
-        return JdbcUtils.query(sql);
-
+    public Music query(String key,String keyword) throws SQLException{
+        String sql = "SELECT FROM Chair WHERE"+key+" ='"+keyword+"'";
+        ResultSet rs = null;
+        try {
+            rs = JdbcUtils.query(sql);
+        }catch (NullPointerException e){
+            e.printStackTrace();
+        }
+        Music music = new Music();
+        music.setUrl(rs.getString("musicURL"));
+        music.decodeEmotion();
+        music.decodeFileName();
+        music.decodeFileType();
+        return music;
     }
 
 }

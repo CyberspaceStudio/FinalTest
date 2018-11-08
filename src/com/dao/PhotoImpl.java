@@ -57,12 +57,13 @@ public class PhotoImpl implements Dao<Photo> {
         }catch (NullPointerException e){
             e.printStackTrace();
         }
-        Chair chair = new Chair();
+        Photo photo = new Photo();
 
-        chair.setId(Integer.parseInt(rs.getString("chairId")));
-        chair.setPosition_x(rs.getString("position_x"));
-        chair.setPosition_x(rs.getString("position_y"));
-        return JdbcUtils.query(sql);
+        photo.setUrl(rs.getString("photo_name"));
+        photo.decodeEmotion();
+        photo.decodeFileName();
+        photo.decodeFileType();
+        return photo;
 
     }
 }
