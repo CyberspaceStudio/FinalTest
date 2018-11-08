@@ -1,4 +1,4 @@
-package com.unit;
+package com.util;
 
 import com.entity.User;
 import org.json.JSONObject;
@@ -40,7 +40,7 @@ public class Core extends Thread{
     }
 
     private static String weatherJudge(User user){
-        String temp = "";
+        String temp ;
         if(user.getWeather().contains("晴")){
             temp = "happy";
         }else if(user.getWeather().contains("雪")){
@@ -64,7 +64,7 @@ public class Core extends Thread{
         String emotionTime = timeJudge();
         String emotionPosition = positionJudge(user);
         String emotionWeather = weatherJudge(user);
-        String finalEmotion = "";
+        String finalEmotion ;
         //按照一种我也不知道什么鬼的规则来判断感情，代码可读性奇差无比，无法维护，强者麻烦重构一下
         if((emotionTime.equals("positive") || emotionTime.equals("working")) && emotionPosition.equals("working")){
             finalEmotion = "positive";

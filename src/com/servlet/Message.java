@@ -1,7 +1,7 @@
 package com.servlet;
 
-import com.dao.Dao;
-import com.dao.VideoImpl;
+import com.dao.MessageDao;
+import com.dao.MessageImpl;
 import com.entity.User;
 import com.util.Core;
 import com.util.DealRequest;
@@ -13,27 +13,30 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
-@WebServlet(name = "Video")
-public class Video extends HttpServlet {
+@WebServlet(name = "Message")
+public class Message extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         User user = DealRequest.dealIt(request);
-        com.entity.Video video = new com.entity.Video();
+        List<com.entity.Message> messages = null;
         String finalEmotion = Core.judge(user);
-        //实现方法接口
-        Dao videoDao = new VideoImpl();
+        MessageDao md = new MessageImpl();
         try {
-            video = ((VideoImpl) videoDao).query("emotion",finalEmotion);
-        } catch (SQLException e1) {
-            e1.printStackTrace();
+            messages = ((MessageImpl)md).query("emotion",finalEmotion);
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
-        JSONObject jsonObject = new JSONObject();
-        jsonObject.put("emotion",video.getEmotion());
-        jsonObject.put("url",video.getUrl());
-        jsonObject.put("fileType",video.getFileType());
-        response.getWriter().write(jsonObject.toString());
+        for (com.entity.Message message: messages){
+            JSONObject json = new JSONObject();
+            json.put("id",message.getId());
+            json.put("emotion",message.getEmotion());
+            json.put("content",message.getContent());
+            response.getWriter().write(json.toString());
+        }
+
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

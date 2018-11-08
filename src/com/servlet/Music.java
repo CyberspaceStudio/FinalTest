@@ -1,9 +1,10 @@
 package com.servlet;
 
-import com.dao.MusicDao;
+import com.dao.Dao;
 import com.dao.MusicDaoImpl;
 import com.entity.User;
-import com.unit.Core;
+import com.util.Core;
+import com.util.DealRequest;
 import org.json.JSONObject;
 
 import javax.servlet.ServletException;
@@ -12,46 +13,26 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 
 @WebServlet(name = "Music")
 public class Music extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String weather = request.getParameter("weather");
-        float positionX = 0;
-        float positionY = 0;
-        try {
-            positionX = Float.parseFloat(request.getParameter("positionX"));
-            positionY = Float.parseFloat(request.getParameter("positionY"));
-        }catch (NumberFormatException e){
-            e.printStackTrace();
-        }
-        User user = new User();
-        user.setPositionX(positionX);
-        user.setPositionY(positionY);
-        user.setWeather(weather);
-        String finalEmtion = Core.judge(user);
+        User user = DealRequest.dealIt(request);
+        com.entity.Music music= new com.entity.Music();
+        String finalEmotion = Core.judge(user);
         //实现方法接口
-        MusicDao videoDao = new MusicDaoImpl();
-        ResultSet rs = null;
-        JSONObject jsonObject = new JSONObject();
-        try{
-            rs = videoDao.query("emotion",finalEmtion);
-            jsonObject.put("emotion",finalEmtion);
-            jsonObject.put("url",rs.getString("url"));
-            //多此一举的方法我快疯了
-            com.entity.Music music = new com.entity.Music();
-            music.setUrl(rs.getString("url"));
-            music.decodeFileType();
-            jsonObject.put("fileType",music.getFileType());
-            //以上全是多此一举
-            response.getWriter().write(jsonObject.toString());
-        }catch (SQLException e){
-            e.printStackTrace();
+        Dao musicDao = new MusicDaoImpl();
+        try {
+            music = ((MusicDaoImpl)musicDao).query("emotion",finalEmotion);
+        } catch (SQLException e1) {
+            e1.printStackTrace();
         }
-
-
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.put("emotion",music.getEmotion());
+        jsonObject.put("url",music.getUrl());
+        jsonObject.put("fileType",music.getFileType());
+        response.getWriter().write(jsonObject.toString());
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
