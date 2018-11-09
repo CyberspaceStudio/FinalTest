@@ -57,7 +57,9 @@ public class VideoImpl implements Dao<Video>{
             e.printStackTrace();
         }
         Video video = new Video();
-        video.setUrl(rs.getString("videoURL"));
+        if (rs.next()) {
+            video.setUrl(rs.getString("videoURL"));
+        }
         video.decodeEmotion();
         video.decodeFileName();
         video.decodeFileType();

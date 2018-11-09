@@ -22,7 +22,7 @@ public class JdbcUtils {
 
     //获得与指定数据库的连接
 
-    public static Connection getConnection() throws SQLException {
+    private static Connection getConnection() throws SQLException {
 
         //从连接池返回一个连接
         return ds.getConnection();
@@ -31,7 +31,7 @@ public class JdbcUtils {
 
     //释放资源
 
-    public static void release(ResultSet rs, Statement stmt, Connection conn) throws SQLException{
+    private static void release(ResultSet rs, Statement stmt, Connection conn) throws SQLException{
 
         if (rs != null) {
             rs.close();

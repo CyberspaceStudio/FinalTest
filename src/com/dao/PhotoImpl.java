@@ -58,8 +58,9 @@ public class PhotoImpl implements Dao<Photo> {
             e.printStackTrace();
         }
         Photo photo = new Photo();
-
-        photo.setUrl(rs.getString("photo_name"));
+        if(rs.next()) {
+            photo.setUrl(rs.getString("photo_name"));
+        }
         photo.decodeEmotion();
         photo.decodeFileName();
         photo.decodeFileType();

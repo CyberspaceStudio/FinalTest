@@ -56,7 +56,9 @@ public class MusicDaoImpl implements Dao<Music> {
             e.printStackTrace();
         }
         Music music = new Music();
-        music.setUrl(rs.getString("musicURL"));
+        if(rs.next()) {
+            music.setUrl(rs.getString("musicURL"));
+        }
         music.decodeEmotion();
         music.decodeFileName();
         music.decodeFileType();

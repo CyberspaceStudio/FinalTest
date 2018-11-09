@@ -58,10 +58,11 @@ public class ChairImpl implements Dao<Chair> {
             e.printStackTrace();
         }
         Chair chair = new Chair();
-
-        chair.setId(Integer.parseInt(rs.getString("chairId")));
-        chair.setPosition_x(rs.getString("position_x"));
-        chair.setPosition_x(rs.getString("position_y"));
+        if(rs.next()) {
+            chair.setId(Integer.parseInt(rs.getString("chairId")));
+            chair.setPosition_x(rs.getString("position_x"));
+            chair.setPosition_x(rs.getString("position_y"));
+        }
         return chair;
     }
 }
