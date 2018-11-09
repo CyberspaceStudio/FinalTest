@@ -22,6 +22,14 @@ public class Message extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         List<com.entity.Message> messages = null;
         String id = request.getParameter("id");
+        float positionX = 0;
+        float positionY = 0;
+        try {
+            positionX = Float.parseFloat(request.getParameter("positionX"));
+            positionY = Float.parseFloat(request.getParameter("positionY"));
+        }catch (NumberFormatException e){
+            e.printStackTrace();
+        }
         MessageDao md = new MessageImpl();
         try {
             messages = ((MessageImpl)md).query("chairid",id);
