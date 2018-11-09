@@ -26,7 +26,7 @@ public class Video extends HttpServlet {
         Dao videoDao = new VideoImpl();
         try {
             video = ((VideoImpl) videoDao).query("emotion",finalEmotion);
-        } catch (SQLException e1) {
+        } catch (Exception e1) {
             e1.printStackTrace();
         }
         JSONObject jsonObject = new JSONObject();

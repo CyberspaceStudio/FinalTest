@@ -49,16 +49,16 @@ public class VideoImpl implements Dao<Video>{
     //求求你了用返回对象重构这些方法吧我求你了
     @Override
     public Video query(String key, String keyword) throws SQLException{
-        String sql = "SELECT FROM Video WHERE"+key+" ='"+keyword+"'";
+        String sql = "SELECT * FROM video WHERE" + key +" ='" + keyword + "'";
         ResultSet rs = null;
         try {
             rs = JdbcUtils.query(sql);
-        }catch (NullPointerException e){
+        }catch (Exception e){
             e.printStackTrace();
         }
         Video video = new Video();
         if (rs.next()) {
-            video.setUrl(rs.getString("videoURL"));
+            video.setUrl(rs.getString("videourl"));
         }
         video.decodeEmotion();
         video.decodeFileName();

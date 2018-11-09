@@ -48,4 +48,12 @@
         <servlet-name>Music</servlet-name>
         <url-pattern>/music</url-pattern>
     </servlet-mapping>
+    <servlet>
+        <servlet-name>Message</servlet-name>
+        <servlet-class>com.servlet.Message</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Message</servlet-name>
+        <url-pattern>/message</url-pattern>
+    </servlet-mapping>
 </web-app>

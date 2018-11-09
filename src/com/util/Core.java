@@ -68,19 +68,15 @@ public class Core extends Thread{
         //按照一种我也不知道什么鬼的规则来判断感情，代码可读性奇差无比，无法维护，强者麻烦重构一下
         if((emotionTime.equals("positive") || emotionTime.equals("working")) && emotionPosition.equals("working")){
             finalEmotion = "positive";
-            return finalEmotion;
         }else if ((emotionTime.equals("positive") || emotionTime.equals("working")) && emotionPosition.equals("relax")){
             finalEmotion = "happy";
-            return finalEmotion;
         }else if(emotionTime.equals("sadness")){
             finalEmotion = "sadness";
-            return finalEmotion;
         }else if(emotionTime.equals("night")){
             finalEmotion = "night";
-            return finalEmotion;
         }else {
             finalEmotion = "easy";
-            return finalEmotion;
         }
+        return finalEmotion;
     }
 }
