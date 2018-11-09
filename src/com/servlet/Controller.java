@@ -22,7 +22,6 @@ public class Controller extends HttpServlet {
             e.printStackTrace();
         }
 */
-        seeds = 1;
         switch (seeds){
             case 1:
                 rd = getServletContext().getRequestDispatcher("/video");

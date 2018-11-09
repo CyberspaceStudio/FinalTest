@@ -56,4 +56,12 @@
         <servlet-name>Message</servlet-name>
         <url-pattern>/message</url-pattern>
     </servlet-mapping>
+    <servlet>
+        <servlet-name>Photo</servlet-name>
+        <servlet-class>com.servlet.Photo</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Photo</servlet-name>
+        <url-pattern>/photo</url-pattern>
+    </servlet-mapping>
 </web-app>

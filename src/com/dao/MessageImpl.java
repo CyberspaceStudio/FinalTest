@@ -52,8 +52,7 @@ public class MessageImpl implements MessageDao<Message> {
     @Override
     public List<Message> query(String key, String keyword) throws SQLException{
         List<Message> list = new ArrayList<Message>();
-        String sql = "SELECT * FROM Message WHERE "+key+"='"+keyword+"'";
-        ResultSet res= JdbcUtils.query(sql);
+        ResultSet res= JdbcUtils.query("SELECT * FROM message WHERE "+key+"='"+keyword+"'");
         while(res.next()){
             Message temp = new Message();
             temp.setId(Integer.parseInt(res.getString("chairId")));

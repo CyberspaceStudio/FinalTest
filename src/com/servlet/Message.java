@@ -24,7 +24,7 @@ public class Message extends HttpServlet {
         String id = request.getParameter("id");
         MessageDao md = new MessageImpl();
         try {
-            messages = ((MessageImpl)md).query("id",id);
+            messages = ((MessageImpl)md).query("chairid",id);
         } catch (SQLException e) {
             e.printStackTrace();
         }
