@@ -52,7 +52,7 @@ public class MessageImpl implements MessageDao<Message> {
     @Override
     public List<Message> query(String key, String keyword) throws SQLException{
         List<Message> list = new ArrayList<Message>();
-        String sql = "SELECT * FROM Message WHERE"+key+" ='"+keyword+"'";
+        String sql = "SELECT * FROM Message WHERE "+key+"='"+keyword+"'";
         ResultSet res= JdbcUtils.query(sql);
         while(res.next()){
             Message temp = new Message();

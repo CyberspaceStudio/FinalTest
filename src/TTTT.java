@@ -25,11 +25,11 @@ public class TTTT {
         Video video = new Video();
         Dao videoDao = new VideoImpl();
         try {
-            video = ((VideoImpl) videoDao).query("emotion","night");
+            video = ((VideoImpl) videoDao).query("id","1");
         } catch (Exception e1) {
             e1.printStackTrace();
         }
-        System.out.println(video.getEmotion());
+        System.out.println(video.getUrl()+"abc");
         System.out.println(object.toString());
     }
 }

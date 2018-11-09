@@ -50,7 +50,7 @@ public class PhotoImpl implements Dao<Photo> {
 
     @Override
     public Photo query(String key, String keyword) throws SQLException{
-        String sql = "SELECT * FROM Photo WHERE"+key+" ='"+keyword+"'";
+        String sql = "SELECT * FROM Photo WHERE "+key+"='"+keyword+"'";
         ResultSet rs = null;
         try {
             rs = JdbcUtils.query(sql);

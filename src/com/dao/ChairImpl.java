@@ -50,7 +50,7 @@ public class ChairImpl implements Dao<Chair> {
 
     @Override
     public Chair query(String key, String keyword) throws SQLException{
-        String sql = "SELECT * FROM Chair WHERE"+key+" ='"+keyword+"'";
+        String sql = "SELECT * FROM Chair WHERE "+key+"='"+keyword+"'";
         ResultSet rs = null;
         try {
             rs = JdbcUtils.query(sql);

@@ -48,7 +48,7 @@ public class MusicDaoImpl implements Dao<Music> {
 
     @Override
     public Music query(String key,String keyword) throws SQLException{
-        String sql = "SELECT * FROM Music WHERE"+key+" ='"+keyword+"'";
+        String sql = "SELECT * FROM Music WHERE "+key+"='"+keyword+"'";
         ResultSet rs = null;
         try {
             rs = JdbcUtils.query(sql);
